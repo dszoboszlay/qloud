@@ -2,8 +2,14 @@
 
 TEMPLATE = app
 
-HEADERS = 
-SOURCES = src/main.cpp
+HEADERS = include/propset.hpp \
+	  include/clouddef.hpp \
+	  include/factory.hpp \
+	  include/tagcloud.hpp
+SOURCES = src/propset.cpp \
+	  src/clouddef.cpp  \
+	  src/tagcloud.cpp \
+	  src/main.cpp
 FORMS =
 
 CONFIG += qt debug_and_release precompile_header
