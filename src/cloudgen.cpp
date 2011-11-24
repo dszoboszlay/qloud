@@ -1,13 +1,13 @@
 #include "../include/common.hpp"
 #include "../include/clouddef.hpp"
-#include "../include/tagcloud.hpp"
+#include "../include/cloudgen.hpp"
 
-TagCloud::TagCloud(QObject* parent) :
+CloudGen::CloudGen(QObject* parent) :
   QObject(parent)
 {
 }
 
-QGraphicsItem* TagCloud::renderItem(const CloudDef& def) const
+QGraphicsItem* CloudGen::renderItem(const CloudDef& def) const
 {
   QGraphicsItemGroup* result = new QGraphicsItemGroup();
 
@@ -39,9 +39,9 @@ QGraphicsItem* TagCloud::renderItem(const CloudDef& def) const
   return result;
 }
 
-QGraphicsScene* TagCloud::renderScene(const CloudDef& def) const
+QGraphicsScene* CloudGen::renderScene(const CloudDef& def, QObject* parent) const
 {
-  QGraphicsScene* result = new QGraphicsScene();
+  QGraphicsScene* result = new QGraphicsScene(parent);
   result->addItem(renderItem(def));
 
   /* TODO: set from def

@@ -12,10 +12,9 @@ CloudDef* CloudDef::create(const QString& iniFile, QObject* parent)
 CloudDef::CloudDef(QSettings& settings, QObject* parent) :
   PropSet(settings, parent)
 {
-  int limit = settings.beginReadArray("word");
-  for (int i = 0; i < limit; ++i) {
-    settings.setArrayIndex(i);
+  foreach (const QString& group, settings.childGroups()) {
+    settings.beginGroup(group);
     _words << new PropSet(settings, this);
+    settings.endGroup();
   }
-  settings.endArray();
 }
