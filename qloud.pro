@@ -5,9 +5,11 @@ TEMPLATE = app
 HEADERS = include/propset.hpp \
 	  include/clouddef.hpp \
 	  include/factory.hpp \
+	  include/setter.hpp \
 	  include/cloudgen.hpp
 SOURCES = src/propset.cpp \
 	  src/clouddef.cpp  \
+	  src/setter.cpp \
 	  src/cloudgen.cpp \
 	  src/main.cpp
 FORMS =
