@@ -23,7 +23,7 @@ QGraphicsItem* CloudGen::renderItem(const CloudDef& def) const
 
   QRegion filledArea;
   WordList words(def.words());
-  foreach(const PropSet* word, words) {
+  foreach (const PropSet* word, words) {
     QTransform transf;
     QGraphicsSimpleTextItem* item = new QGraphicsSimpleTextItem();
     item->setBoundingRegionGranularity(1.0);
