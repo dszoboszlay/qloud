@@ -8,9 +8,21 @@ template <class T>
 class Factory
 {
 public:
-  Factory(const T& defaultValue) :
+  Factory(const char* name, const T& defaultValue) :
+    _name(name),
     _default(defaultValue)
   {}
+
+  Factory(const Factory<T>& orig, const T& defaultValue) :
+    _name(orig._name),
+    _default(defaultValue),
+    _options(orig._options)
+  {}
+
+  const char* name() const
+  {
+    return _name;
+  }
 
   T get() const
   {
@@ -22,12 +34,13 @@ public:
     return _options.value(value, _default);
   }
 
-  void set(const QString& key, const T& value) const
+  void set(const QString& key, const T& value)
   {
-    _options.store(key, value);
+    _options.insert(key, value);
   }
 
 private:
+  const char* _name;
   T _default;
   QHash<QString, T> _options;
 };

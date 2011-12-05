@@ -3,10 +3,11 @@
 
 #include <QObject>
 
+class QGraphicsSimpleTextItem;
 class QRegion;
 class QTransform;
+class CloudDef;
 class PropSet;
-class WordList;
 
 class Setter : public QObject
 {
@@ -15,11 +16,12 @@ class Setter : public QObject
 public:
   Setter(QObject* parent = 0);
 
-  virtual void init(const WordList& words) = 0;
+  virtual void init(const CloudDef& cloud) = 0;
 
-  virtual void apply(PropSet& word,
+  virtual void apply(const PropSet& word,
+		     QGraphicsSimpleTextItem& item,
 		     QTransform& transform,
-		     QRegion& filledArea) = 0;
+		     const QRegion& filledArea) = 0;
 };
 
 #endif
