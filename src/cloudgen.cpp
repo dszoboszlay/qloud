@@ -1,7 +1,7 @@
 #include "../include/common.hpp"
 #include "../include/clouddef.hpp"
 #include "../include/cloudgen.hpp"
-#include "../include/textsetter.hpp"
+#include "../include/simplesetter.hpp"
 
 template <class T>
 Setter* setterFact() {
@@ -10,7 +10,7 @@ Setter* setterFact() {
 
 template <class T>
 SetterDef setterDef() {
-  return SetterDef(T::staticMetaObject.className(),
+  return SetterDef(typeid(T).name(),
 		   setterFact<T>);
 }
 
@@ -19,17 +19,36 @@ CloudGen::CloudGen(QObject* parent) :
 {
   SetterDef d;
 
-  // Create setter factories
-  d = setterDef<BasicTextSetter>();
+  // Create text setter factories
+  d = setterDef<SimpleSetter<QString> >();
   SetterFactory textSetters("text_setter", d);
   textSetters.set("text", d);
 
   _setterFactories << textSetters;
 
+  // Create font setter factories
+  d = setterDef<SimpleSetter<QFont> >();
+  SetterFactory fontSetters("font_setter", d);
+  fontSetters.set("font", d);
+
+  _setterFactories << fontSetters;
+
+  // Create color setter factories
+  d = setterDef<SimpleSetter<QColor> >();
+  SetterFactory colorSetters("color_setter", d);
+  colorSetters.set("color", d);
+
+  _setterFactories << colorSetters;
+
+  // Create size setter factories
+  d = setterDef<SimpleSetter<qreal> >();
+  SetterFactory sizeSetters("size_setter", d);
+  sizeSetters.set("size", d);
+
+  _setterFactories << sizeSetters;
+
   /* TODO: add factories for
-     - font
-     - size
-     - color
+     - weight-scaled size
      - orientation
      - placement
      - word order

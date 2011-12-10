@@ -6,12 +6,10 @@ HEADERS = include/propset.hpp \
 	  include/clouddef.hpp \
 	  include/factory.hpp \
 	  include/setter.hpp \
-	  include/textsetter.hpp \
+	  include/simplesetter.hpp \
 	  include/cloudgen.hpp
 SOURCES = src/propset.cpp \
 	  src/clouddef.cpp  \
-	  src/setter.cpp \
-	  src/textsetter.cpp \
 	  src/cloudgen.cpp \
 	  src/main.cpp
 FORMS =
